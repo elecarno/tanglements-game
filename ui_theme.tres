@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://vsob1tco1xbp"]
+
+[ext_resource type="FontFile" uid="uid://cpaen27x35iqm" path="res://red_hat_mono/RedHatMono-Regular.ttf" id="1_x27yi"]
+
+[resource]
+Label/fonts/font = ExtResource("1_x27yi")
