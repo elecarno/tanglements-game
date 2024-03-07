@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ylxwxy3gqwgi"]
+[gd_scene load_steps=10 format=3 uid="uid://ylxwxy3gqwgi"]
 
 [ext_resource type="Theme" uid="uid://vsob1tco1xbp" path="res://ui_theme.tres" id="1_n657u"]
 [ext_resource type="Script" path="res://scripts/ui/ui_status.gd" id="1_u08g8"]
 [ext_resource type="Script" path="res://scripts/ui/ui_pouch.gd" id="3_a64ox"]
+[ext_resource type="Script" path="res://scripts/ui/ui_instance.gd" id="4_5k5c6"]
 [ext_resource type="Script" path="res://scripts/ui/ui_console.gd" id="4_5slmn"]
+[ext_resource type="Script" path="res://scripts/instancedata.gd" id="6_ctrnm"]
+[ext_resource type="Script" path="res://scripts/c_region.gd" id="6_tj7hh"]
+[ext_resource type="Script" path="res://scripts/c_instance.gd" id="7_5o5g4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7308j"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -82,7 +93,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_top = 136.0
 offset_right = 313.0
-offset_bottom = 272.0
+offset_bottom = 256.0
 script = ExtResource("3_a64ox")
 
 [node name="pouch_label" type="Label" parent="pouch"]
@@ -118,6 +129,49 @@ text = "12
 5"
 horizontal_alignment = 2
 
+[node name="instance" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_top = 256.0
+offset_right = 313.0
+offset_bottom = 507.0
+script = ExtResource("4_5k5c6")
+
+[node name="instance_label" type="Label" parent="instance"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 22.0
+offset_right = -19.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n657u")
+text = "Region
+  Co-ordinates
+  Type
+
+Nearby"
+
+[node name="instance_display" type="Label" parent="instance"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 22.0
+offset_right = -19.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n657u")
+text = "0
+(5, 5)
+Outdoors"
+horizontal_alignment = 2
+
 [node name="console" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -139,36 +193,17 @@ offset_right = -13.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="console_display" type="Label" parent="console/scroll"]
+custom_minimum_size = Vector2(500, 300)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_n657u")
-text = "00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > 
-00:00 > "
+text = "Welcome to the Tanglements."
+vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="input" type="LineEdit" parent="console"]
 layout_mode = 1
@@ -181,5 +216,35 @@ offset_right = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 placeholder_text = "Input Command"
+
+[node name="instance_maps" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -640.0
+offset_right = -600.0
+offset_bottom = 40.0
+script = ExtResource("6_ctrnm")
+
+[node name="A2" type="Control" parent="instance_maps"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_5o5g4")
+instance = 1
+
+[node name="plains" type="Panel" parent="instance_maps/A2"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7308j")
+script = ExtResource("6_tj7hh")
+
+[node name="forest" type="Panel" parent="instance_maps/A2"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -30.0
+offset_right = 130.0
+offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7308j")
+script = ExtResource("6_tj7hh")
 
 [connection signal="text_submitted" from="console/input" to="console" method="_on_input_text_submitted"]

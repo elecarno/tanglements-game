@@ -1,5 +1,8 @@
 extends Node
 
+@onready var console_display: Label = get_tree().get_root().get_node("main/console/scroll/console_display")
+@onready var console: console_controller = get_tree().get_root().get_node("main/console")
+
 var hp: float = 100.0
 var MAX_HP: int = 100
 var sick: float = 0.0
@@ -22,11 +25,14 @@ func tick():
 	if check_for_gamma():
 		rad += 0.0005
 
-func hop():
-	var previous_instance = instance
-	instance = gamedata.get_random_instance(instance)
-	pouch["hPills"] -= 1
-	print("player hopped from " + gamedata.instance_to_str(previous_instance) + " to " + gamedata.instance_to_str(instance))
+func hop(type: int):
+	match type:
+		0:
+			var previous_instance = instance
+			instance = gamedata.get_random_instance(instance)
+			pouch["hPills"] -= 1
+			var str: String = "used a pill and hopped from " + gamedata.instance_to_str(previous_instance) + " to " + gamedata.instance_to_str(instance)
+			console.console_print(str)
 
 func check_for_gamma():
 	if instance == gamedata.Instance.G1 or instance == gamedata.Instance.G2 or instance == gamedata.Instance.G3:

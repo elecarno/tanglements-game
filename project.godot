@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 gamedata="*res://scripts/gamedata.gd"
 playerdata="*res://scripts/playerdata.gd"
+instancedata="*res://scripts/instancedata.gd"
 
 [display]
 

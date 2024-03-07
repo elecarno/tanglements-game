@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://vsob1tco1xbp"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://vsob1tco1xbp"]
 
 [ext_resource type="FontFile" uid="uid://cpaen27x35iqm" path="res://red_hat_mono/RedHatMono-Regular.ttf" id="1_x27yi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg278"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
 [resource]
 Label/fonts/font = ExtResource("1_x27yi")
+Panel/styles/panel = SubResource("StyleBoxFlat_lg278")
