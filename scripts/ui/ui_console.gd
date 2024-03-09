@@ -13,7 +13,7 @@ func _on_input_text_submitted(text: String):
 	
 	var input = text.lstrip(" ").rstrip(" ")
 	var first_space: int = text.find(" ")
-	var next_space: int = 0
+	#var next_space: int = 0
 	var command: String
 	var arg: String
 	
@@ -34,11 +34,16 @@ func run_command(command: String, arg: String):
 					playerdata.hop(0)
 			else:
 				console_print("require argument: p, i, b")
+		"region":
+			if str_to_var(arg) != null:
+				playerdata.region = str_to_var(arg)
+			else:
+				console_print("invalid or no argument")
 					
 	
 func handle_scrollbar_changed():
 	scrollbar.value = scrollbar.max_value
 
-func console_print(str: String):
-	display.text = display.text + "\n" + str
-	print("console print: " + str)
+func console_print(print_str: String):
+	display.text = display.text + "\n" + print_str
+	print("console print: " + print_str)

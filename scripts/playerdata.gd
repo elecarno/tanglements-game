@@ -31,8 +31,8 @@ func hop(type: int):
 			var previous_instance = instance
 			instance = gamedata.get_random_instance(instance)
 			pouch["hPills"] -= 1
-			var str: String = "used a pill and hopped from " + gamedata.instance_to_str(previous_instance) + " to " + gamedata.instance_to_str(instance)
-			console.console_print(str)
+			var print_str: String = "used a pill and hopped from " + gamedata.instance_to_str(previous_instance) + " to " + gamedata.instance_to_str(instance)
+			console.console_print(print_str)
 
 func check_for_gamma():
 	if instance == gamedata.Instance.G1 or instance == gamedata.Instance.G2 or instance == gamedata.Instance.G3:

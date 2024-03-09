@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ui_pouch.gd" id="3_a64ox"]
 [ext_resource type="Script" path="res://scripts/ui/ui_instance.gd" id="4_5k5c6"]
 [ext_resource type="Script" path="res://scripts/ui/ui_console.gd" id="4_5slmn"]
-[ext_resource type="Script" path="res://scripts/instancedata.gd" id="6_ctrnm"]
+[ext_resource type="Script" path="res://scripts/c_instances.gd" id="6_1e4p4"]
 [ext_resource type="Script" path="res://scripts/c_region.gd" id="6_tj7hh"]
 [ext_resource type="Script" path="res://scripts/c_instance.gd" id="7_5o5g4"]
 
@@ -153,7 +153,7 @@ text = "Region
   Co-ordinates
   Type
 
-Nearby"
+Nearest"
 
 [node name="instance_display" type="Label" parent="instance"]
 layout_mode = 1
@@ -217,29 +217,21 @@ grow_horizontal = 2
 grow_vertical = 0
 placeholder_text = "Input Command"
 
-[node name="instance_maps" type="Control" parent="."]
-anchors_preset = 0
-offset_left = -640.0
-offset_right = -600.0
-offset_bottom = 40.0
-script = ExtResource("6_ctrnm")
+[node name="instance_maps" type="Node2D" parent="."]
+position = Vector2(-499, 0)
+script = ExtResource("6_1e4p4")
 
-[node name="A2" type="Control" parent="instance_maps"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="A2" type="Node2D" parent="instance_maps"]
 script = ExtResource("7_5o5g4")
 instance = 1
 
 [node name="plains" type="Panel" parent="instance_maps/A2"]
-layout_mode = 0
 offset_right = 300.0
 offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7308j")
 script = ExtResource("6_tj7hh")
 
 [node name="forest" type="Panel" parent="instance_maps/A2"]
-layout_mode = 0
 offset_left = -120.0
 offset_top = -30.0
 offset_right = 130.0
